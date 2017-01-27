@@ -13,7 +13,6 @@ protected:
     QWidget *parent;
     QList<Pile *> piles;
 public:
-    Game();
     Game(QWidget *par);
     void AddPile(Pile *p);
     virtual ~Game();

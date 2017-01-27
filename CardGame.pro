@@ -51,3 +51,6 @@ HEADERS  += \
         gameboard.h
 
 FORMS    += gameboard.ui
+
+RESOURCES += \
+    cardimages.qrc

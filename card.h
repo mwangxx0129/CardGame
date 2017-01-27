@@ -9,12 +9,12 @@ enum pips{ACE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE,TEN,JACK,QUEEN,KING,SUIT_
 enum suits{CLUBS,DIAMONDS,HEARTS,SPADES};
 class Pile; //forward decl
 
-class Card
+class Card : public QLabel
 {
 private:
     static QImage faces[53];
     static bool initialized;
-    int value;
+    int value; // 0-51
     Card *under;
     Card *over;
     Pile *pile;
@@ -36,14 +36,14 @@ private:
 public:
     Card(int v, QWidget *parent = 0);
     Card(pips p, suits s, QWidget *parent = 0);
-    suits Suit();//{return suit;}
-    pips Pip();//{return pip;}
-    cardColors Color();//{return color;}
-    Pile *Pilep();//{return pile;}
-    Card *Over();//{return over;}
-    Card *Under();//{return under;}
+    suits Suit(){return suit;}
+    pips Pip(){return pip;}
+    cardColors Color(){return color;}
+    Pile *Pilep(){return pile;}
+    Card *Over(){return over;}
+    Card *Under(){return under;}
     int StackSize();
-    bool Faceup();//{return faceup;}
+    bool Faceup(){return faceup;}
     void Faceup(bool f);
     void mousePressEvent(QMouseEvent *ev);
     void mouseMoveEvent(QMouseEvent *ev);

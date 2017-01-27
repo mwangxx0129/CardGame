@@ -1,6 +1,4 @@
 #include "rule.h"
-
-Rule::Rule()
-{
-
-}
+#include "pile.h"
+#include "card.h"
+#include "gameboard.h"

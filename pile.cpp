@@ -8,11 +8,10 @@ extern GameBoard *MainApp;
 extern Game *game;
 extern QList<Pile *> piles;
 
-#if(0)
 // static member data allocation
+
 Rule *PileStock::dragRules[DRAGLAST];
 Rule *PileStock::dropRules[DROPLAST];
-
 
 Rule *PileFoundation::dragRules[DRAGLAST];
 Rule *PileFoundation::dropRules[DROPLAST];
@@ -23,10 +22,8 @@ Rule *PileTableau::dropRules[DROPLAST];
 Rule *PileFreeCell::dragRules[DRAGLAST];
 Rule *PileFreeCell::dropRules[DROPLAST];
 
-
 Rule *PileWaste::dragRules[DRAGLAST];
 Rule *PileWaste::dropRules[DROPLAST];
-#endif
 
 // constructor
 Pile::Pile(int x, int y,   //position of upper left corner
@@ -42,3 +39,6 @@ Pile::~Pile()
 {
     //TODO
 }
+//void mouseReleaseEvent(QMouseEvent *){
+
+//}
