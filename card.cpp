@@ -4,29 +4,30 @@
 QImage Card::faces[53];
 bool Card::initialized = false;
 
-
+/*
 Card::Card(int v, QWidget *parent)
 {
-    this->setPalette(parent);
+    this->setParent(parent);
     value = v;
 }
+*/
+//Card::Card(pips p, suits s, QWidget *parent)
+//{
+//    pip = p;
+//    suit = s;
+//    setParent(parent);
+//    if(s == DIAMONDS || s == HEARTS ){
+//        color = RED;
+//    }else{
+//        color = BLACK;
+//    }
 
-Card::Card(pips p, suits s, QWidget *parent)
-{
-    pip = p;
-    suit = s;
-    if(s == DIAMONDS || s == HEARTS ){
-        cardColor = RED;
-    }else{
-        cardColor = BLACK;
-    }
-    setParent(parent);
-    //value = v;
-    this->id = id;
-    on = NULL;
-    faceup = true;
-    popUpCard = NULL;
-}
+
+//    pile = NULL;
+//    faceup = true;
+//    popUpCard = NULL;
+//}
+
 
 void Card::Initialize()
 {
@@ -44,14 +45,11 @@ void Card::Initialize()
         for(int p = ACE; p <= KING; p++)
         {
             fname[9] = pip[p];
-            face[n++] = QImage(fname);
+            faces[n++] = QImage(fname);
         }
     }
-    // init card 53
+    // init card 53th image
     faces[n] =QImage(":/cards/zCardBack.bmp");
 }
 
-Card::~Card(){
-
-}
 
