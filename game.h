@@ -21,10 +21,10 @@ public:
     virtual bool PlayOff(Card *c);
     virtual void PlayOffAll();
     virtual void OnFieldDoubleClick(Card *){}
-    virtual void OnFiledClick(Card *c){}
-    virtual void OnDealClick(Card *c){}
-    virtual void OnDealtClick(Card *c){}
-    virtual void OnFreeCellClick(Card *c){}
+    virtual void OnFiledClick(Card *){}
+    virtual void OnDealClick(Card *){}
+    virtual void OnDealtClick(Card *){}
+    virtual void OnFreeCellClick(Card *){}
     virtual void CheckWin();
     virtual QString GameName()=0;
     virtual int FreeMoves(){return 0;} // calculate max move fo freecell

@@ -7,7 +7,7 @@ class Pile;
 class Klondike: public Game
 {
     Pile *deal;
-    Pile *wast;
+    Pile *waste;
     Pile *foundation[4];
     Pile *tableau[7];
 public:

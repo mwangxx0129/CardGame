@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+class Card;
+class Game;
 namespace Ui {
 class GameBoard;
 }
@@ -15,8 +17,13 @@ public:
     explicit GameBoard(QWidget *parent = 0);
     ~GameBoard();
 
+private slots:
+    void on_actionKlondike_triggered();
+
 private:
     Ui::GameBoard *ui;
+    Card *deck[53];
+
 };
 
 #endif // GAMEBOARD_H

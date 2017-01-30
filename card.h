@@ -35,7 +35,7 @@ private:
 
 public:
     Card(int v, QWidget *parent = 0);
-    Card(pips p, suits s, QWidget *parent = 0);
+    Card(pips p, suits s, QWidget *parent);
     suits Suit(){return suit;}
     pips Pip(){return pip;}
     cardColors Color(){return color;}
@@ -45,10 +45,10 @@ public:
     int StackSize();
     bool Faceup(){return faceup;}
     void Faceup(bool f);
-    void mousePressEvent(QMouseEvent *ev);
-    void mouseMoveEvent(QMouseEvent *ev);
-    void mouseReleaseEvent(QMouseEvent *ev);
-    void mouseDoubleClickEvent(QMouseEvent *ev);
+//    void mousePressEvent(QMouseEvent *ev);
+//    void mouseMoveEvent(QMouseEvent *ev);
+//    void mouseReleaseEvent(QMouseEvent *ev);
+//    void mouseDoubleClickEvent(QMouseEvent *ev);
     void Move(Pile *to, bool expose = true);
 
     Card *AdjustPositions(QPoint newPos, QPoint delta);
@@ -56,7 +56,7 @@ public:
     void Animate(QPoint newPos);
     static void Initialize(); // init static variable
     void Flip();
-    QSize sizeHint() const;
+//    QSize sizeHint() const;
     void Playoff();
     friend class Pile;
 

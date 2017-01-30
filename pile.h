@@ -13,12 +13,17 @@ enum pileType{FOUNDATION, STOCK, WASTE, TABLEAU,FREE_CELL};
 class Pile :public QLabel // abstract base class for pile types
 {
 private:
-    QPoint delta; //offset to next card in the pile
+    //QPoint delta; //offset to next card in the pile
     Card *top;
     Card *bottom;
 
+protected:
+    QPoint topLeft;
+    QPoint delta;
+    int num;
+
 public:
-    Pile(int x, int y, int dx, int dy, QWidget *parent);
+    explicit Pile(int x, int y, int dx, int dy, QWidget *parent);
     ~Pile();
 
     Card *Top(){return top;}
@@ -34,15 +39,20 @@ public:
     void AddDropRules(int n...);
     void AddDragRules(int n...);
 
-    virtual Rule * DragRule(int i)=0;
-    virtual void DragRule(int i, Rule *r)=0;
-    virtual Rule *DropRule(int i)=0;
-    virtual void DropRule(int i, Rule *r)=0;
-    virtual pileType Type()=0;
+//    virtual Rule * DragRule(int i)=0;
+//    virtual void DragRule(int i, Rule *r)=0;
+//    virtual Rule *DropRule(int i)=0;
+//    virtual void DropRule(int i, Rule *r)=0;
+//    virtual pileType Type()=0;
 
     //void mouseReleaseEvent(QMouseEvent *);
     virtual void onClickEvent(Card *){} //override as needed
     virtual void mouseDoubleClickEvent(Card *){} //override as needed
+
+    QPoint TopLeft(){return topLeft;}
+    //QPoint Delta(){return delta;}
+    void AddOneCard();
+    int Num(){return num;}
 };
 
 // Inheriting classes that differ in rules
@@ -52,13 +62,14 @@ private:
     static Rule *dragRules[DRAGLAST];
     static Rule *dropRules[DROPLAST];
 public:
-    Rule * DragRule(int i);
-    void DragRule(int i, Rule *r);
-    Rule *DropRule(int i);
-    void DropRule(int i, Rule *r);
-    pileType Type();
-    void onClickEvent(Card *);
-    void mouseDoubleClickEvent(Card *);
+    PileStock(int x, int y, int dx, int dy, QWidget *parent);
+//    Rule * DragRule(int i);
+//    void DragRule(int i, Rule *r);
+//    Rule *DropRule(int i);
+//    void DropRule(int i, Rule *r);
+//    pileType Type();
+//    void onClickEvent(Card *);
+//    void mouseDoubleClickEvent(Card *);
 };
 
 
@@ -68,13 +79,14 @@ private:
     static Rule *dragRules[DRAGLAST];
     static Rule *dropRules[DROPLAST];
 public:
-    Rule * DragRule(int i);
-    void DragRule(int i, Rule *r);
-    Rule *DropRule(int i);
-    void DropRule(int i, Rule *r);
-    pileType Type();
-    void onClickEvent(Card *);
-    void mouseDoubleClickEvent(Card *);
+    PileFoundation(int x, int y, int dx, int dy, QWidget *parent);
+//    Rule * DragRule(int i);
+//    void DragRule(int i, Rule *r);
+//    Rule *DropRule(int i);
+//    void DropRule(int i, Rule *r);
+//    pileType Type();
+//    void onClickEvent(Card *);
+//    void mouseDoubleClickEvent(Card *);
 };
 
 
@@ -83,14 +95,16 @@ class PileTableau:public Pile
 private:
     static Rule *dragRules[DRAGLAST];
     static Rule *dropRules[DROPLAST];
+
 public:
-    Rule * DragRule(int i);
-    void DragRule(int i, Rule *r);
-    Rule *DropRule(int i);
-    void DropRule(int i, Rule *r);
-    pileType Type();
-    void onClickEvent(Card *);
-    void mouseDoubleClickEvent(Card *);
+    PileTableau(int x, int y, int dx, int dy, QWidget *parent);
+//    Rule * DragRule(int i);
+//    void DragRule(int i, Rule *r);
+//    Rule *DropRule(int i);
+//    void DropRule(int i, Rule *r);
+//    pileType Type();
+//    void onClickEvent(Card *);
+//    void mouseDoubleClickEvent(Card *);
 };
 
 class PileFreeCell:public Pile
@@ -99,13 +113,13 @@ private:
     static Rule *dragRules[DRAGLAST];
     static Rule *dropRules[DROPLAST];
 public:
-    Rule * DragRule(int i);
-    void DragRule(int i, Rule *r);
-    Rule *DropRule(int i);
-    void DropRule(int i, Rule *r);
-    pileType Type();
-    void onClickEvent(Card *);
-    void mouseDoubleClickEvent(Card *);
+//    Rule * DragRule(int i);
+//    void DragRule(int i, Rule *r);
+//    Rule *DropRule(int i);
+//    void DropRule(int i, Rule *r);
+//    pileType Type();
+//    void onClickEvent(Card *);
+//    void mouseDoubleClickEvent(Card *);
 };
 
 class PileWaste:public Pile
@@ -114,13 +128,14 @@ private:
     static Rule *dragRules[DRAGLAST];
     static Rule *dropRules[DROPLAST];
 public:
-    Rule * DragRule(int i);
-    void DragRule(int i, Rule *r);
-    Rule *DropRule(int i);
-    void DropRule(int i, Rule *r);
-    pileType Type();
-    void onClickEvent(Card *);
-    void mouseDoubleClickEvent(Card *);
+    PileWaste(int x, int y, int dx, int dy, QWidget *parent);
+//    Rule * DragRule(int i);
+//    void DragRule(int i, Rule *r);
+//    Rule *DropRule(int i);
+//    void DropRule(int i, Rule *r);
+//    pileType Type();
+//    void onClickEvent(Card *);
+//    void mouseDoubleClickEvent(Card *);
 };
 
 
