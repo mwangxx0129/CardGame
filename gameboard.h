@@ -20,6 +20,10 @@ public:
 private slots:
     void on_actionKlondike_triggered();
 
+    void on_actionFreeCell_triggered();
+
+    void on_actionSpider_triggered();
+
 private:
     Ui::GameBoard *ui;
     Card *deck[53];

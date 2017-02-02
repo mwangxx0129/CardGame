@@ -27,30 +27,28 @@ SOURCES += main.cpp\
         pile.cpp \
 #        aboutdialog.cpp \
 #        cardmove.cpp \
-#        freecell.cpp \
+        freecell.cpp \
         game.cpp \
 #        help.cpp \
         klondike.cpp \
 #        rule.cpp \
-#        spider.cpp \
+        spider.cpp \
 #        winningdialog.cpp \
         gameboard.cpp \
-#    singlecard.cpp
 
 HEADERS  += \
         card.h \
         pile.h \
 #        aboutdialog.h \
 #        cardmove.h \
-#        freecell.h \
+        freecell.h \
         game.h \
 #        help.h \
         klondike.h \
 #        rule.h \
-#        spider.h \
+        spider.h \
 #        winningdialog.h \
         gameboard.h \
-#    singlecard.h
 
 FORMS    += gameboard.ui
 

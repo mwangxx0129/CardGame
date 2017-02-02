@@ -17,7 +17,7 @@ public:
     void AddPile(Pile *p);
     virtual ~Game();
     void Clear();
-    virtual void ReDeal(hardtype h = REPEAT)=0;
+    virtual void ReDeal(hardtype h = REPEAT)=0; // abstract function
     virtual bool PlayOff(Card *c);
     virtual void PlayOffAll();
     virtual void OnFieldDoubleClick(Card *){}
@@ -25,7 +25,7 @@ public:
     virtual void OnDealClick(Card *){}
     virtual void OnDealtClick(Card *){}
     virtual void OnFreeCellClick(Card *){}
-    virtual void CheckWin();
+    virtual void CheckWin(); // check all pile and foundation
     virtual QString GameName()=0;
     virtual int FreeMoves(){return 0;} // calculate max move fo freecell
     friend class Pile;

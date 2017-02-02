@@ -9,10 +9,11 @@ Klondike::Klondike(QWidget *par)
 //----------------------------------------------------------------------|
 void Klondike::ReDeal(hardtype h){
     Clear();
+
     // create and shuffle
     Card* Deck[52];
     for (int i = 0; i < 52; i++)
-        Deck[i] = new Card(i, parent); // create face down
+        Deck[i] = new Card(i, parent);
     Shuffle(Deck, 52);
 
     // now create board layout
@@ -22,7 +23,6 @@ void Klondike::ReDeal(hardtype h){
 
     for (int i = 0; i < 4; i++)
         foundation[i] = new PileFoundation(266+82*i, 10, 0, 0, parent);
-
     for (int i = 0; i < 7; i++)
         tableau[i] = new PileTableau(20+82*i, 120, 0, 18, parent);
 
@@ -31,20 +31,20 @@ void Klondike::ReDeal(hardtype h){
 
     for (int pass = 0; pass < 7; pass++)
         for (int pile = pass; pile < 7; pile++)
-        {
             if (pass == pile)
-                Deck[i]->Faceup(true);
-            Deck[i++]->Move(tableau[pile]);
-        }
+                Deck[i++]->Move(tableau[pile], true);
+            else
+                Deck[i++]->Move(tableau[pile],false);
 
     while (i < 52)
-        Deck[i++]->Move(deal);
+        Deck[i++]->Move(deal,false);
 }
 
 //----------------------------------------------------------------------|
 QString Klondike::GameName(){
     return "Klondike";
 }
+
 //----------------------------------------------------------------------|
 void Klondike::DealAction(){}
 //----------------------------------------------------------------------|

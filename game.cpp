@@ -16,11 +16,11 @@ Game::~Game()
 }
 
 //------------------------------------------------|
-void Game::Clear()
+void Game::Clear() //
 {
     while(!piles.empty()){
         Pile *p = piles.takeLast();
-        if(p) delete p;
+        if(p) delete p; //  if p is not local, p = NULL
     }
 }
 //------------------------------------------------|
@@ -68,8 +68,8 @@ void Game::PlayOffAll(){
 void Game::CheckWin(){
     //    int  i = piles.count();
     //    bool allEmpty = true;
-    //    while(allEmpty && i>= 0 && piles[--i]->Type() != FOUNDATION)
-    //        allEmpty = piles[i]->Empty();
+    //    while(allEmpty && i>= 0)
+    //        allEmpty = FOUNDATION == piles[--i]->Type() || piles[i]->Empty();
     //    if(allEmpty)
     //    {
     //        WinBox->show();

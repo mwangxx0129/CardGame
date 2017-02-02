@@ -14,22 +14,8 @@ Card::Card(int v, QWidget *parent)
     :QLabel(parent),value(v)
 {
     int s = v % 13;
-    if(s == DIAMONDS || s == HEARTS ){
-        color = RED;
-    }else{
-        color = BLACK;
-    }
-
-    QPixmap image;
-    faceup = false;
-    if(faceup){
-        image = QPixmap::fromImage(faces[value]);
-    }else{
-        image = QPixmap::fromImage(faces[52]);
-    }
-
-    setPixmap(image);
-
+    color = (DIAMONDS==s || HEARTS== s ) ?RED:BLACK;
+    Faceup(false);
     under = NULL;
     over = NULL;
 }
@@ -37,66 +23,45 @@ Card::Card(int v, QWidget *parent)
 Card::Card(pips p, suits s, QWidget *parent)
     :QLabel(parent), pip(p),suit(s)
 {
-    if(s == DIAMONDS || s == HEARTS ){
-        color = RED;
-    }else{
-        color = BLACK;
-    }
+    color = (DIAMONDS==s || HEARTS== s ) ?RED:BLACK;
     value = 13 * s + p;
-
-    faceup = false;
-    QPixmap image =
-            faceup == true?
-                QPixmap::fromImage(faces[value])
-              :QPixmap::fromImage(faces[52]);
-
-    setPixmap(image);
-
-
+    Faceup(false);
     under = NULL;
     over = NULL;
 }
 
+// Couting from buttom to top
 int Card::StackSize()
 {
-    int size = 1;
-
-    // from current to down
-    Card *c = this;
-    while (c->under)
-    {
-        ++size;
-        c = c->under;
-    }
-
-    // from current to up
-    c = this;
-    while(c->over)
-    {
-        ++size;
-        c = c->over;
-    }
-
+    int size = 0;
+    for(Card *c = this; c!=NULL; ++size, c = c->over);
     return size;
 }
 
 void Card::Faceup(bool f)
 {
-    faceup = f;
-    if(faceup){
-        setPixmap(QPixmap::fromImage(faces[value]));
-    }else{
-        setPixmap(QPixmap::fromImage(faces[52]));
-    }
+    setPixmap(QPixmap::fromImage(faces[f?value:52]));
+}
+
+void Card::mousePressEvent(QMouseEvent *ev)
+{
+    //    if(ev->button() ==Qt::LeftButton){
+    //        startDragPos = pos();
+    //        mouseDownOffset = pos()- ev->globalPos();
+    //        okToDrag = faceup && pile->CanBeDragged(this);
+    //    }else if(ev->button() == Qt::RightButton)
+    //    {}
 }
 
 void Card::Move(Pile *to, bool expose)
 {
+    Faceup(expose);
 
-    QPoint topLeft = to->TopLeft();
+    QPoint topLeft = to->pos();
     QPoint delta = to ->Delta();
-    int num = to->Num();
-    to->AddOneCard();
+    int num = to->Bottom()->StackSize();
+
+    to->AcceptCards(this, expose, true);
 
     int x = topLeft.x() + delta.x() * num;
     int y = topLeft.y() + delta.y() * num;
@@ -111,7 +76,8 @@ void Card::Initialize()
     if(initialized) return;
     initialized = true;
     char suit[] = {'c','d','h','s'};
-    char pip[] = {'1','2','3','4','5','6','7','8','9','a','b','c','d'};
+    char pip[] =
+    {'1','2','3','4','5','6','7','8','9','a','b','c','d'};
     QString fname =":/cards/c1.bmp";
     int n = 0;
 

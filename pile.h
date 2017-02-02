@@ -13,14 +13,9 @@ enum pileType{FOUNDATION, STOCK, WASTE, TABLEAU,FREE_CELL};
 class Pile :public QLabel // abstract base class for pile types
 {
 private:
-    //QPoint delta; //offset to next card in the pile
+    QPoint delta; //offset to next card in the pile
     Card *top;
     Card *bottom;
-
-protected:
-    QPoint topLeft;
-    QPoint delta;
-    int num;
 
 public:
     explicit Pile(int x, int y, int dx, int dy, QWidget *parent);
@@ -48,11 +43,6 @@ public:
     //void mouseReleaseEvent(QMouseEvent *);
     virtual void onClickEvent(Card *){} //override as needed
     virtual void mouseDoubleClickEvent(Card *){} //override as needed
-
-    QPoint TopLeft(){return topLeft;}
-    //QPoint Delta(){return delta;}
-    void AddOneCard();
-    int Num(){return num;}
 };
 
 // Inheriting classes that differ in rules
@@ -113,6 +103,7 @@ private:
     static Rule *dragRules[DRAGLAST];
     static Rule *dropRules[DROPLAST];
 public:
+    PileFreeCell(int x, int y, int dx, int dy, QWidget *parent);
 //    Rule * DragRule(int i);
 //    void DragRule(int i, Rule *r);
 //    Rule *DropRule(int i);
