@@ -12,9 +12,8 @@ GameBoard::GameBoard(QWidget *parent) :
     ui(new Ui::GameBoard)
 {
     ui->setupUi(this);
-
+    resize(1000,700);
     Card::Initialize();
-
     game = NULL;
 }
 
@@ -25,21 +24,40 @@ GameBoard::~GameBoard()
 
 void GameBoard::on_actionKlondike_triggered()
 {
-    if(game) game->Clear();
-    game = new Klondike(ui->centralWidget);
-    game->ReDeal(MEDIUM);
+    on_actionGame_triggered("Klondike");
 }
 
 void GameBoard::on_actionFreeCell_triggered()
 {
-    if(game) game->Clear();
-    game = new FreeCell(ui->centralWidget);
-    game->ReDeal(MEDIUM);
+    on_actionGame_triggered("FreeCell");
 }
 
 void GameBoard::on_actionSpider_triggered()
 {
+    on_actionGame_triggered("Spider");
+}
+
+void GameBoard::on_actionGame_triggered(QString name)
+{
     if(game) game->Clear();
-    game = new Spider(ui->centralWidget);
+    switch (name.at(0).toLatin1()) {
+    case 'K':
+        game = new Klondike(ui->centralWidget);
+        break;
+    case 'F':
+        game = new FreeCell(ui->centralWidget);
+        break;
+    case 'S':
+        game = new Spider(ui->centralWidget);
+        break;
+    default:
+        break;
+    }
+    ui->menuGame->setTitle(game->GameName());
     game->ReDeal(MEDIUM);
+}
+
+void GameBoard::on_actionRedeal_triggered()
+{
+    on_actionGame_triggered(NULL != game ? game->GameName():"Klondike");
 }

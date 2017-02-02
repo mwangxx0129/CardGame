@@ -31,10 +31,7 @@ void Klondike::ReDeal(hardtype h){
 
     for (int pass = 0; pass < 7; pass++)
         for (int pile = pass; pile < 7; pile++)
-            if (pass == pile)
-                Deck[i++]->Move(tableau[pile], true);
-            else
-                Deck[i++]->Move(tableau[pile],false);
+            Deck[i++]->Move(tableau[pile], pass == pile);
 
     while (i < 52)
         Deck[i++]->Move(deal,false);

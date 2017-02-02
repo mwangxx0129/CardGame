@@ -28,6 +28,7 @@ Pile::Pile(int x, int y,
            QWidget *parent):
     QLabel(parent),delta(QPoint(dx,dy)),top(0),bottom(0)
 {
+    setStyleSheet("border:2px solid rgb(46, 158, 49);");
     game->AddPile(this);
     move(x, y);
     resize(71,96);

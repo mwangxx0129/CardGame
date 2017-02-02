@@ -24,9 +24,12 @@ private slots:
 
     void on_actionSpider_triggered();
 
+    void on_actionRedeal_triggered();
+
 private:
     Ui::GameBoard *ui;
     Card *deck[53];
+    void on_actionGame_triggered(QString);
 
 };
 
