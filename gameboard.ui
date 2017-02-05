@@ -147,6 +147,9 @@
    <property name="text">
     <string>Redeal</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
   </action>
   <action name="actionPlay_off">
    <property name="text">
