@@ -1,5 +1,6 @@
 #include "pile.h"
 #include "card.h"
+#include "game.h"
 #include "gameboard.h"
 #include "cardmove.h"
 
@@ -39,31 +40,95 @@ Pile::Pile(int x, int y,
 
 Pile::~Pile()
 {
-    Card *c = top;
-    while(c != NULL)
+    Card *c = bottom;
+    while(c)
     {
+        bottom = c->over;
         delete c;
-        c = c->under;
+        c = bottom;
     }
+    // TODO DragRule and DropRule
 }
 
 void Pile::AcceptCards(Card *c, bool expose, bool record)
 {
-    if(bottom == NULL)
+    QPoint cardPosition;
+    //if (record) new CardMove(c, c->pile, this);
+    if (c->pile) // is the card in a pile now?
+        c->pile->ReleaseCards(c, expose);
+    if (top) // pile not empty
     {
-        top = c;
-        bottom = c;
+        cardPosition = top->pos()+Delta();
+        c->under = top;
+        top->over = c;
     }else{
-        Card * tmp = top;
-        top = c;
-        tmp->over = top;
-        top->under = tmp;
+        cardPosition = pos();
+        bottom = c;
     }
+
+    c->Faceup(expose);
+    c->pile = this;
+    top = c->AdjustPositions(cardPosition, Delta());
+}
+
+void Pile::ReleaseCards(Card *c, bool expose)
+{
+    if(c && c->pile && c->under){
+        top = c->under;
+        top->over = NULL;
+        c->under = NULL;
+        top->Faceup(expose);
+
+    }else{
+        top = NULL;
+        bottom = NULL;
+    }
+
 }
 
 bool Pile::CanBeDragged(Card *c)
 {
+    //    return c->Faceup();
+    return true;
+}
 
+bool Pile::CanBeDropped(Card *c)
+{
+    return true;
+}
+
+void Pile::FindClosestDrop(Card *c)
+{
+    const int NUM = 3;
+    QPoint drop = c->pos();
+    Pile *closest[NUM] = {NULL, NULL, NULL};
+    int distance[NUM] = {10000, 20000, 30000};
+    for (int i = 0; i<game->piles.count(); i++)
+    {
+        Pile *p = game->piles[i];
+        if (p == c->pile)
+            continue;
+        QPoint diff = drop - (p->top?p->top->pos():p->pos());
+        int dist = diff.manhattanLength();
+        for (int j = 0; j < NUM; j++)
+        {
+            if (dist < distance[j])
+            {
+                std::swap(dist, distance[j]);
+                std::swap(p, closest[j]);
+            }
+        }
+    }
+    for (int i = 0; i < NUM; i++)
+    {
+        if (closest[i] && closest[i]->CanBeDropped(c))
+        {
+            closest[i]->AcceptCards(c);
+            return;
+        }
+    }
+    QPoint p = c->under?(c->under->pos()+c->pile->Delta()/(c->under->faceup?1:2)):c->pile->pos();
+    c->AdjustPositions(p, c->pile->delta); // put them back if no move
 }
 
 //void mouseReleaseEvent(QMouseEvent *){
@@ -76,10 +141,20 @@ PileTableau::PileTableau(int x, int y, int dx, int dy, QWidget *parent):
 
 }
 
+pileType PileTableau::Type()
+{
+    return TABLEAU;
+}
+
 
 PileStock::PileStock(int x, int y, int dx, int dy, QWidget *parent):
     Pile(x,y,dx,dy,parent)
 {
+}
+
+pileType PileStock::Type()
+{
+    return STOCK;
 }
 
 PileWaste::PileWaste(int x, int y, int dx, int dy, QWidget *parent):
@@ -88,14 +163,29 @@ PileWaste::PileWaste(int x, int y, int dx, int dy, QWidget *parent):
 
 }
 
+pileType PileWaste::Type()
+{
+    return WASTE;
+}
+
 PileFoundation::PileFoundation(int x, int y, int dx, int dy, QWidget *parent):
     Pile(x,y,dx,dy,parent)
 {
 
 }
 
+pileType PileFoundation::Type()
+{
+    return FOUNDATION;
+}
+
 PileFreeCell::PileFreeCell(int x, int y, int dx, int dy, QWidget *parent):
     Pile(x,y,dx,dy,parent)
 {
 
+}
+
+pileType PileFreeCell::Type()
+{
+    return FREE_CELL;
 }

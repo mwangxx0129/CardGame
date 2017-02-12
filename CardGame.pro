@@ -31,7 +31,7 @@ SOURCES += main.cpp\
         game.cpp \
 #        help.cpp \
         klondike.cpp \
-#        rule.cpp \
+        rule.cpp \
         spider.cpp \
 #        winningdialog.cpp \
         gameboard.cpp \
@@ -45,7 +45,7 @@ HEADERS  += \
         game.h \
 #        help.h \
         klondike.h \
-#        rule.h \
+        rule.h \
         spider.h \
 #        winningdialog.h \
         gameboard.h \

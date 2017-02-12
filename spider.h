@@ -7,8 +7,9 @@ class Pile;
 class Spider: public Game
 {
 private:
-    Pile *stock[4];
-    Pile *foundation[4];
+    hardtype diffculty;
+    Pile *stock[5]; // [5]
+    Pile *foundation[8];// [8]
     Pile *tableau[10];
 public:
     Spider(QWidget *par);

@@ -11,23 +11,20 @@ QPoint Card::popUpPos;
 Card * Card::popUpCard;
 
 Card::Card(int v, QWidget *parent)
-    :QLabel(parent),value(v)
+    :QLabel(parent),value(v),okToDrag(0),under(0),over(0),pile(0),moving(0)
 {
-    int s = v % 13;
-    color = (DIAMONDS==s || HEARTS== s ) ?RED:BLACK;
+    suit = suits(v / 13);
+    pip = pips(v % 13);
+    color = (DIAMONDS==suit || HEARTS== suit ) ?RED:BLACK;
     Faceup(false);
-    under = NULL;
-    over = NULL;
 }
 
 Card::Card(pips p, suits s, QWidget *parent)
-    :QLabel(parent), pip(p),suit(s)
+    :QLabel(parent), pip(p),suit(s),okToDrag(0),under(0),over(0),pile(0),moving(0)
 {
     color = (DIAMONDS==s || HEARTS== s ) ?RED:BLACK;
     value = 13 * s + p;
     Faceup(false);
-    under = NULL;
-    over = NULL;
 }
 
 // Couting from buttom to top
@@ -43,54 +40,65 @@ void Card::Faceup(bool f)
     setPixmap(QPixmap::fromImage(faces[f?value:52]));
 }
 
-void Card::mousePressEvent(QMouseEvent *ev)
-{
-    if(ev->button() ==Qt::LeftButton){
-        startDragPos = pos();
-        mouseDownOffset = pos()- ev->globalPos();
-        okToDrag = faceup && pile->CanBeDragged(this);
-    }else if(ev->button() == Qt::RightButton)
-    {
+void Card::mousePressEvent(QMouseEvent *ev){
+    switch(ev->button()){
+    case Qt::LeftButton:
+        startDragPos=pos();
+        mouseDownOffset=pos()-ev->globalPos();
+        okToDrag=faceup && pile->CanBeDragged(this);
+        break;
+     case Qt::RightButton:
         popUpPos=pos();
         popUpCard=this;
         move(pos()+QPoint(0,-20));
+        break;
+     default: ;
     }
 }
 
-void Card::mouseMoveEvent(QMouseEvent *ev)
-{
-    Card * c = this;
+void Card::mouseMoveEvent(QMouseEvent *ev){
 
     QPoint point =ev->globalPos()+mouseDownOffset;
     QPoint moved =point-pos();
-    if(okToDrag && moved.manhattanLength()>4)
-        // the mouse has moved more than 4 pixel since the oldposition
-        moving=true;
-    else
+
+    if(moving)
         AdjustPositions(point,pile?pile->Delta():QPoint(0,10));
+    else
+        if(okToDrag && moved.manhattanLength()>4)
+            // the mouse has moved more than 4 pixel since the oldposition
+            moving=true;
 }
 
-void Card::mouseReleaseEvent(QMouseEvent *ev)
-{
+void Card::mouseReleaseEvent(QMouseEvent *ev){
+    if(ev->buttons()) return;
+    if(popUpCard){
+        popUpCard->move(popUpPos);//restore card position
+        popUpCard=NULL;
+        return;
+    }
+    if(moving && pile)
+        pile ->FindClosestDrop(this);
+    else
+        if(pile){
+            QPoint point =ev->globalPos()+mouseDownOffset;
+            QPoint moved =point-pos();
+            if(moved.manhattanLength()<=4)
+                pile->onClickEvent(this);
+        }
+    moving=false;
+    okToDrag=false;
+}
 
+void Card::mouseDoubleClickEvent(QMouseEvent *ev)
+{
+    //    if(pile) pile->mouseDoubleClickEvent(this);
+    //    if(!over) // try to play off card
+    //        Playoff();
 }
 
 void Card::Move(Pile *to, bool expose)
 {
-    Faceup(expose);
-
-    QPoint topLeft = to->pos();
-    QPoint delta = to ->Delta();
-    int num = to->Bottom()->StackSize();
-
     to->AcceptCards(this, expose, true);
-
-    int x = topLeft.x() + delta.x() * num;
-    int y = topLeft.y() + delta.y() * num;
-
-    move(x,y);
-    raise();
-    show();
 }
 
 Card *Card::AdjustPositions(QPoint newPos, QPoint delta)

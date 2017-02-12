@@ -20,11 +20,11 @@ void Spider::ReDeal(hardtype h)
     for(int i = 0; i< 10; i++)
         tableau[i] = new PileTableau(20+82*i, 10, 0, 18, parent);
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 8; i++)
         foundation[i] = new PileFoundation(20+82*i, 500, 0, 0, parent);
 
-    for (int i = 0; i < 4; i++)
-        foundation[i] = new PileStock(676+8*i, 500, 0, 0, parent);
+    for (int i = 0; i < 5; i++)
+        stock[i] = new PileStock(676+8*i, 500, 0, 0, parent);
 
     int i = 0;
     // now deal with cards
@@ -39,9 +39,9 @@ void Spider::ReDeal(hardtype h)
         Deck[i++]->Move(tableau[pile], true);
 
 
-    for(int pile = 0; pile < 4; pile ++)
+    for(int pile = 0; pile < 5; pile ++)
         for (int stack = 0; stack < 10; stack ++)
-            Deck[i++]->Move(foundation[pile], false);
+            Deck[i++]->Move(stock[pile], false);
 }
 
 QString Spider::GameName()

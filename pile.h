@@ -19,7 +19,7 @@ private:
 
 public:
     explicit Pile(int x, int y, int dx, int dy, QWidget *parent);
-    ~Pile();
+    virtual ~Pile();
 
     Card *Top(){return top;}
     Card *Bottom(){return bottom;}
@@ -38,7 +38,7 @@ public:
 //    virtual void DragRule(int i, Rule *r)=0;
 //    virtual Rule *DropRule(int i)=0;
 //    virtual void DropRule(int i, Rule *r)=0;
-//    virtual pileType Type()=0;
+    virtual pileType Type()=0;
 
     //void mouseReleaseEvent(QMouseEvent *);
     virtual void onClickEvent(Card *){} //override as needed
@@ -57,7 +57,7 @@ public:
 //    void DragRule(int i, Rule *r);
 //    Rule *DropRule(int i);
 //    void DropRule(int i, Rule *r);
-//    pileType Type();
+    pileType Type();
 //    void onClickEvent(Card *);
 //    void mouseDoubleClickEvent(Card *);
 };
@@ -74,7 +74,7 @@ public:
 //    void DragRule(int i, Rule *r);
 //    Rule *DropRule(int i);
 //    void DropRule(int i, Rule *r);
-//    pileType Type();
+    pileType Type();
 //    void onClickEvent(Card *);
 //    void mouseDoubleClickEvent(Card *);
 };
@@ -92,7 +92,7 @@ public:
 //    void DragRule(int i, Rule *r);
 //    Rule *DropRule(int i);
 //    void DropRule(int i, Rule *r);
-//    pileType Type();
+    pileType Type();
 //    void onClickEvent(Card *);
 //    void mouseDoubleClickEvent(Card *);
 };
@@ -108,7 +108,7 @@ public:
 //    void DragRule(int i, Rule *r);
 //    Rule *DropRule(int i);
 //    void DropRule(int i, Rule *r);
-//    pileType Type();
+    pileType Type();
 //    void onClickEvent(Card *);
 //    void mouseDoubleClickEvent(Card *);
 };
@@ -124,7 +124,7 @@ public:
 //    void DragRule(int i, Rule *r);
 //    Rule *DropRule(int i);
 //    void DropRule(int i, Rule *r);
-//    pileType Type();
+    pileType Type();
 //    void onClickEvent(Card *);
 //    void mouseDoubleClickEvent(Card *);
 };

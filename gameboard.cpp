@@ -39,6 +39,9 @@ void GameBoard::on_actionSpider_triggered()
 
 void GameBoard::on_actionGame_triggered(QString name)
 {
+    //qsrand(t.elapsed());
+    setWindowTitle(name);
+    //setSizePolicy(QSizePolicy());
     if(game) game->Clear();
     switch (name.at(0).toLatin1()) {
     case 'K':

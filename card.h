@@ -48,7 +48,7 @@ public:
     void mousePressEvent(QMouseEvent *ev);
     void mouseMoveEvent(QMouseEvent *ev);
     void mouseReleaseEvent(QMouseEvent *ev);
-//    void mouseDoubleClickEvent(QMouseEvent *ev);
+    void mouseDoubleClickEvent(QMouseEvent *ev);
     void Move(Pile *to, bool expose = true);
 
     Card *AdjustPositions(QPoint newPos, QPoint delta);
