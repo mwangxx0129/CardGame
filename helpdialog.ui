@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>601</width>
+    <height>476</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>240</y>
+     <x>240</x>
+     <y>430</y>
      <width>341</width>
      <height>32</height>
     </rect>
@@ -29,22 +29,67 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>40</y>
-     <width>211</width>
-     <height>151</height>
+     <x>40</x>
+     <y>30</y>
+     <width>491</width>
+     <height>391</height>
     </rect>
    </property>
-   <property name="html">
-    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Tab 1</string>
+    </attribute>
+    <widget class="QTextBrowser" name="textBrowser">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>451</width>
+       <height>331</height>
+      </rect>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Rule&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
+&lt;p style=&quot; margin-top:0px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a; background-color:#ffffff;&quot;&gt;Many Solitaire games can be played on areas smaller than a card table. Others require a larger playing area, and these games are often played on the floor or on a bedspread. Alternatively, in order to play with large layouts on a card table, miniature playing cards are available. These are usually half the size of standard playing cards.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:22px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:1.1%; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto Condensed'; font-size:8pt; font-weight:600; color:#051c37;&quot;&gt;The Pack&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a; background-color:#ffffff;&quot;&gt;Virtually all Solitaire games are played with one or more standard 52-card packs. Standard Solitaire uses one 52-card pack.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:11px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:1.1%; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto Condensed'; font-size:8pt; font-weight:696; color:#051c37; background-color:#ffffff;&quot;&gt;Object of the Game&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a; background-color:#ffffff;&quot;&gt;The first objective is to release and play into position certain cards to build up each foundation, in sequence and in suit, from the ace through the king. The ultimate objective is to build the whole pack onto the foundations, and if that can be done, the Solitaire game is won.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:11px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:1.1%; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto Condensed'; font-size:8pt; font-weight:696; color:#051c37; background-color:#ffffff;&quot;&gt;Rank of Cards&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a; background-color:#ffffff;&quot;&gt;The rank of cards in Solitaire games is: K (high), Q, J, 10, 9, 8, 7, 6, 5, 4, 3, 2, A (low).&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:11px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:1.1%; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto Condensed'; font-size:8pt; font-weight:696; color:#051c37; background-color:#ffffff;&quot;&gt;The Deal&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; font-weight:600; color:#4a4a4a;&quot;&gt;There are four different types of piles in Solitaire:&lt;/span&gt;&lt;/p&gt;
+&lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16px;&quot;&gt;The Tableau: Seven piles that make up the main table.&lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16px;&quot;&gt;The Foundations: Four piles on which a whole suit or sequence must be built up. In most Solitaire games, the four aces are the bottom card or base of the foundations. The foundation piles are hearts, diamonds, spades, and clubs.&lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16px;&quot;&gt;The Stock (or “Hand”) Pile: If the entire pack is not laid out in a tableau at the beginning of a game, the remaining cards form the stock pile from which additional cards are brought into play according to the rules.&lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a;&quot; style=&quot; margin-top:0px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16px;&quot;&gt;The Talon (or “Waste”) Pile: Cards from the stock pile that have no place in the tableau or on foundations are laid face up in the waste pile.&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a; background-color:#ffffff;&quot;&gt;To form the tableau, seven piles need to be created. Starting from left to right, place the first card face up to make the first pile, deal one card face down for the next six piles. Starting again from left to right, place one card face up on the second pile and deal one card face down on piles three through seven. Starting again from left to right, place one card face up on the third pile and deal one card face down on piles four through seven. Continue this pattern until pile seven has one card facing up on top of a pile of six cards facing down.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a; background-color:#ffffff;&quot;&gt;The remaining cards form the stock (or “hand”) pile and are placed above the tableau.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a; background-color:#ffffff;&quot;&gt;When starting out, the foundations and waste pile do not have any cards.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:11px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:1.1%; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto Condensed'; font-size:8pt; font-weight:696; color:#051c37; background-color:#ffffff;&quot;&gt;The Play&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a; background-color:#ffffff;&quot;&gt;The initial array may be changed by &amp;quot;building&amp;quot; - transferring cards among the face-up cards in the tableau. Certain cards of the tableau can be played at once, while others may not be played until certain blocking cards are removed. For example, of the seven cards facing up in the tableau, if one is a nine and another is a ten, you may transfer the nine to on top of the ten to begin building that pile in sequence. Since you have moved the nine from one of the seven piles, you have now unblocked a face down card; this card can be turned over and now is in play.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a; background-color:#ffffff;&quot;&gt;As you transfer cards in the tableau and begin building sequences, if you uncover an ace, the ace should be placed in one of the foundation piles. The foundations get built by suit and in sequence from ace to king.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a; background-color:#ffffff;&quot;&gt;Continue to transfer cards on top of each other in the tableau in sequence. If you can’t move any more face up cards, you can utilize the stock pile by flipping over the first card. This card can be played in the foundations or tableau. If you cannot play the card in the tableau or the foundations piles, move the card to the waste pile and turn over another card in the stock pile.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a; background-color:#ffffff;&quot;&gt;If a vacancy in the tableau is created by the removal of cards elsewhere it is called a “space”, and it is of major importance in manipulating the tableau. If a space is created, it can only be filled in with a king. Filling a space with a king could potentially unblock one of the face down cards in another pile in the tableau.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:11px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#ffffff;&quot;&gt;&lt;span style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a; background-color:#ffffff;&quot;&gt;Continue to transfer cards in the tableau and bring cards into play from the stock pile until all the cards are built in suit sequences in the foundation piles to win!&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Roboto,Helvetica Neue,Helvetica,Arial,sans-serif'; font-size:8pt; color:#4a4a4a; background-color:#ffffff;&quot;&gt;- See more at: http://www.bicyclecards.com/how-to-play/solitaire/#sthash.JKyD8jYh.dpuf&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>Tab 2</string>
+    </attribute>
+   </widget>
   </widget>
  </widget>
  <resources/>

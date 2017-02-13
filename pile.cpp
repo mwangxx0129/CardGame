@@ -118,7 +118,7 @@ bool Pile::CanBeDragged(Card *c)
     int i =0;
     bool ok =true;
     while(ok&&DragRule(i)){
-        ok = DragRule(i++)->Enfore(this, c);
+        ok = DragRule(i++)->Enforce(this, c);
     }
     return ok;
 }
@@ -128,7 +128,7 @@ bool Pile::CanBeDropped(Card *c)
     int i =0;
     bool ok =true;
     while(ok&&DropRule(i)){
-        ok = DropRule(i++)->Enfore(this, c);
+        ok = DropRule(i++)->Enforce(this, c);
     }
     return ok;
 }

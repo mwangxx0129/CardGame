@@ -6,22 +6,22 @@
 extern GameBoard *MainApp;
 extern Game *game;
 
-bool RuleBaseNone::Enfore(Pile *p, Card *c)
+bool RuleBaseNone::Enforce(Pile *p, Card *c)
 {
     return false;
 }
 
-bool RuleBaseKing::Enfore(Pile *p, Card *c)
+bool RuleBaseKing::Enforce(Pile *p, Card *c)
 {
     return !p->Empty() || c->Pip()==KING;
 }
 
-bool RuleBaseAce::Enfore(Pile *p, Card *c)
+bool RuleBaseAce::Enforce(Pile *p, Card *c)
 {
     return !p->Empty() || c->Pip()==ACE;
 }
 
-bool RuleNoStack::Enfore(Pile *p, Card *c)
+bool RuleNoStack::Enforce(Pile *p, Card *c)
 {
     int cs = c->StackSize();
     int fm = game->FreeMoves();
@@ -29,37 +29,37 @@ bool RuleNoStack::Enfore(Pile *p, Card *c)
     return cs <=fm;
 }
 
-bool RuleStackSameSuit::Enfore(Pile *p, Card *c)
+bool RuleStackSameSuit::Enforce(Pile *p, Card *c)
 {
     return p->Empty() || c->Suit() == p->Top()->Suit();
 }
 
-bool RuleStackAlternateColor::Enfore(Pile *p, Card *c)
+bool RuleStackAlternateColor::Enforce(Pile *p, Card *c)
 {
     return p->Empty() || c->Color() != p->Top()->Color();
 }
 
-bool RuleStackMinusOne::Enfore(Pile *p, Card *c)
+bool RuleStackMinusOne::Enforce(Pile *p, Card *c)
 {
     return p->Empty() || c->Pip() - p->Top()->Pip() == -1;
 }
 
-bool RuleStackPlusOne::Enfore(Pile *p, Card *c)
+bool RuleStackPlusOne::Enforce(Pile *p, Card *c)
 {
     return p->Empty() || c->Pip() - p->Top()->Pip() == 1;
 }
 
-bool RuleStackAny::Enfore(Pile *p, Card *c)
+bool RuleStackAny::Enforce(Pile *p, Card *c)
 {
     return true;
 }
 
-bool RuleStackOneAtATime::Enfore(Pile *p, Card *c)
+bool RuleStackOneAtATime::Enforce(Pile *p, Card *c)
 {
     return c->Over()==NULL;
 }
 
-bool RuleStack13::Enfore(Pile *p, Card *c)
+bool RuleStack13::Enforce(Pile *p, Card *c)
 {
     Card* temp = c;
     bool ok = true;
@@ -76,7 +76,7 @@ bool RuleStack13::Enfore(Pile *p, Card *c)
     return ok;
 }
 
-bool RuleStackLengthLimited::Enfore(Pile *p, Card *c)
+bool RuleStackLengthLimited::Enforce(Pile *p, Card *c)
 {
     int cs = c->StackSize();
     int fm = game->FreeMoves();
@@ -84,7 +84,7 @@ bool RuleStackLengthLimited::Enfore(Pile *p, Card *c)
     return cs <= fm;
 }
 
-bool RuleMoveSameSuit::Enfore(Pile *p, Card *c)
+bool RuleMoveSameSuit::Enforce(Pile *p, Card *c)
 {
     bool ok = true;
     while (ok && c->Over())
@@ -95,7 +95,7 @@ bool RuleMoveSameSuit::Enfore(Pile *p, Card *c)
     return ok;
 }
 
-bool RuleMoveAltColor::Enfore(Pile *p, Card *c)
+bool RuleMoveAltColor::Enforce(Pile *p, Card *c)
 {
     bool ok = true;
     while (ok && c->Over())
@@ -106,7 +106,7 @@ bool RuleMoveAltColor::Enfore(Pile *p, Card *c)
     return ok;
 }
 
-bool RuleMoveSeqDecreasing::Enfore(Pile *p, Card *c)
+bool RuleMoveSeqDecreasing::Enforce(Pile *p, Card *c)
 {
     bool ok = true;
     while (ok && c->Over() )
@@ -117,7 +117,7 @@ bool RuleMoveSeqDecreasing::Enfore(Pile *p, Card *c)
     return ok;
 }
 
-bool RuleMoveSeqIncreasing::Enfore(Pile *p, Card *c)
+bool RuleMoveSeqIncreasing::Enforce(Pile *p, Card *c)
 {
     bool ok = true;
     while (ok && c->Over())
@@ -128,17 +128,17 @@ bool RuleMoveSeqIncreasing::Enfore(Pile *p, Card *c)
     return ok;
 }
 
-bool RuleMoveLengthLimited::Enfore(Pile *p, Card *c)
+bool RuleMoveLengthLimited::Enforce(Pile *p, Card *c)
 {
     return c->StackSize() <= game->FreeMoves();
 }
 
-bool RuleMoveNone::Enfore(Pile *p, Card *c)
+bool RuleMoveNone::Enforce(Pile *p, Card *c)
 {
     return false;
 }
 
-bool RuleMoveOneAtATime::Enfore(Pile *p, Card *c)
+bool RuleMoveOneAtATime::Enforce(Pile *p, Card *c)
 {
     return !c->Over();
 }

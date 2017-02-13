@@ -68,6 +68,8 @@ void Game::PlayOffAll(){
 }
 
 //------------------------------------------------|
+// pre: Some Pile Accept KING
+// post: Show the
 void Game::CheckWin(){
 
     int  i = piles.count();
