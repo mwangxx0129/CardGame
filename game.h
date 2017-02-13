@@ -21,7 +21,7 @@ public:
     virtual bool PlayOff(Card *c);
     virtual void PlayOffAll();
     virtual void OnFieldDoubleClick(Card *){}
-    virtual void OnFiledClick(Card *){}
+    virtual void OnTableauClick(Card *){}
     virtual void OnDealClick(Card *){}
     virtual void OnDealtClick(Card *){}
     virtual void OnFreeCellClick(Card *){}

@@ -19,12 +19,24 @@ void Spider::ReDeal(hardtype h)
     // now create board layout
     for(int i = 0; i< 10; i++)
         tableau[i] = new PileTableau(20+82*i, 10, 0, 18, parent);
+    tableau[0]->AddDropRules(3, new RuleStackSameSuit,
+                             new RuleBaseKing(),
+                             new RuleStackMinusOne());
+    tableau[0]->AddDragRules(2, new RuleMoveSameSuit(),
+                             new RuleMoveSeqDecreasing());
 
     for (int i = 0; i < 8; i++)
-        foundation[i] = new PileFoundation(20+82*i, 500, 0, 0, parent);
+        foundation[i] = new PileFoundation(20+20*i, 500, 0, 0, parent);
+    foundation[0]->AddDropRules(4, new RuleStackSameSuit(),
+                                new RuleStackPlusOne(),
+                                new RuleBaseAce(),
+                                new RuleStack13());
+    foundation[0]->AddDragRules(0);
 
     for (int i = 0; i < 5; i++)
         stock[i] = new PileStock(676+8*i, 500, 0, 0, parent);
+    stock[0]->AddDropRules(1, new RuleBaseNone());
+    stock[0]->AddDragRules(1, new RuleMoveNone());
 
     int i = 0;
     // now deal with cards
@@ -47,4 +59,32 @@ void Spider::ReDeal(hardtype h)
 QString Spider::GameName()
 {
     return "Spider";
+}
+
+void Spider::OnDealClick(Card *c)
+{
+    Pile *p = c->Pilep();
+    for (int stack = 0; stack < 10; stack ++)
+    {
+        tableau[stack]->AcceptCards(p->Top(), true, true);
+    }
+}
+
+void Spider::OnFieldDoubleClick(Card *c)
+{
+    Pile *p = c->Pilep();
+
+    // find empty foundation
+    int i = 0;
+    while(i<8 &&foundation[i] && foundation[i]->Top()) i++;
+
+
+    // check CanBeDropped
+    if(!foundation[i]->CanBeDropped(p->Top()))
+        return;
+
+    // store them in foundation[i]
+    int k = 0;
+    while(k++ < 13)
+        foundation[i]->AcceptCards(p->Top());
 }

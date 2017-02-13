@@ -10,6 +10,7 @@ class Klondike: public Game
     Pile *waste;
     Pile *foundation[4];
     Pile *tableau[7];
+    hardtype diffculty;
 public:
     Klondike(QWidget *par);
     void ReDeal(hardtype h = EASY);

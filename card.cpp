@@ -37,6 +37,7 @@ int Card::StackSize()
 
 void Card::Faceup(bool f)
 {
+    faceup = f;
     setPixmap(QPixmap::fromImage(faces[f?value:52]));
 }
 
@@ -91,14 +92,14 @@ void Card::mouseReleaseEvent(QMouseEvent *ev){
 
 void Card::mouseDoubleClickEvent(QMouseEvent *ev)
 {
-    //    if(pile) pile->mouseDoubleClickEvent(this);
+    if(pile) pile->mouseDoubleClickEvent(this);
     //    if(!over) // try to play off card
     //        Playoff();
 }
 
 void Card::Move(Pile *to, bool expose)
 {
-    to->AcceptCards(this, expose, true);
+    to->AcceptCards(this, expose, false);
 }
 
 Card *Card::AdjustPositions(QPoint newPos, QPoint delta)
@@ -115,6 +116,11 @@ Card *Card::AdjustPositions(QPoint newPos, QPoint delta)
         c=c->over;
     }while(c);
     return top;
+}
+
+void Card::AlignWithPile()
+{
+
 }
 
 void Card::Initialize()

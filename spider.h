@@ -15,6 +15,8 @@ public:
     Spider(QWidget *par);
     void ReDeal(hardtype h = REPEAT);
     QString GameName();
+    void OnDealClick(Card *c);
+    void OnFieldDoubleClick(Card *);
 };
 
 #endif // SPIDER_H

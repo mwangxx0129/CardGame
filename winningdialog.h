@@ -1,11 +1,22 @@
 #ifndef WINNINGDIALOG_H
 #define WINNINGDIALOG_H
 
+#include <QDialog>
 
-class WinningDialog
+namespace Ui {
+class WinningDialog;
+}
+
+class WinningDialog : public QDialog
 {
+    Q_OBJECT
+
 public:
-    WinningDialog();
+    explicit WinningDialog(QWidget *parent = 0);
+    ~WinningDialog();
+
+private:
+    Ui::WinningDialog *ui;
 };
 
 #endif // WINNINGDIALOG_H

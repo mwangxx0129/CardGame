@@ -18,11 +18,25 @@ void FreeCell::ReDeal(hardtype h)
     // now create board layout
 
     for (int i = 0; i < 4; i++)
-        foundation[i] = new PileFreeCell(20+82*i, 10, 0, 0, parent);
-    for (int i = 0; i < 4; i++)
         foundation[i] = new PileFoundation(430+82*i, 10, 0, 0, parent);
+    foundation[0]->AddDropRules(4, new RuleStackSameSuit(),
+                                new RuleStackPlusOne(),
+                                new RuleBaseAce(),
+                                new RuleMoveOneAtATime());
+    foundation[0]->AddDragRules(0);
+
+    for (int i = 0; i < 4; i++)
+        freecell[i] = new PileFreeCell(20+82*i, 10, 0, 0, parent);
+    freecell[0]->AddDropRules(2, new RuleMoveOneAtATime(),
+                              new RuleStackOneAtATime());
+    foundation[0]->AddDragRules(0);
+
     for (int i = 0; i < 8; i++)
         tableau[i] = new PileTableau(61+82*i, 120, 0, 18, parent);
+    tableau[0]->AddDropRules(3, new RuleStackAlternateColor,
+                             new RuleStackMinusOne());
+    tableau[0]->AddDragRules(2, new RuleMoveAltColor(),
+                             new RuleMoveSeqDecreasing());
 
     int i = 0;
     // now deal with cards

@@ -26,6 +26,16 @@ private slots:
 
     void on_actionRedeal_triggered();
 
+    void on_actionHelp_triggered();
+
+    void on_actionAbout_triggered();
+
+    void on_actionExit_triggered();
+
+    void on_actionPlay_off_triggered();
+
+    void on_actionUndo_triggered();
+
 private:
     Ui::GameBoard *ui;
     Card *deck[53];
