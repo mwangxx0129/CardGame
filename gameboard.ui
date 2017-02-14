@@ -135,15 +135,24 @@
    <property name="text">
     <string>FreeCell</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
   </action>
   <action name="actionSpider">
    <property name="text">
     <string>Spider</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
   </action>
   <action name="actionKlondike">
    <property name="text">
     <string>Klondike</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+K</string>
    </property>
   </action>
   <action name="actionRedeal">

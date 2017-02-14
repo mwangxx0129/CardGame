@@ -41,7 +41,8 @@ public:
     virtual void DropRule(int i, Rule *r)=0;
     virtual pileType Type()=0;
 
-    //void mouseReleaseEvent(QMouseEvent *);
+    void mouseReleaseEvent(QMouseEvent *);
+    void mousePressEvent(QMouseEvent *);
     virtual void onClickEvent(Card *){} //override as needed
     virtual void mouseDoubleClickEvent(Card *){} //override as needed
 };
@@ -60,7 +61,8 @@ public:
     void DropRule(int i, Rule *r){dropRules[i] = r;}
     pileType Type();
     void onClickEvent(Card *);
-//    void mouseDoubleClickEvent(Card *);
+    //void mouseReleaseEvent(QMouseEvent *c);
+    //void mouseDoubleClickEvent(Card *);
 };
 
 

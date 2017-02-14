@@ -12,7 +12,7 @@ class Pile; //forward decl
 class Card : public QLabel
 {
 private:
-    static QImage faces[53];
+    static QImage faces[53]; //init in the game
     static bool initialized;
     int value; // 0-51
     Card *under;
@@ -27,7 +27,7 @@ private:
     bool okToDrag;
 
     bool hasMouseDown;
-    static QPoint mouseDownOffset; // Distance to add to mouse pos to move
+    static QPoint mouseDownOffset; // Vector (mouse pos - card pos )
     static QPoint startDragPos;
     static Qt::MouseButtons buttonDown;
     static QPoint popUpPos;

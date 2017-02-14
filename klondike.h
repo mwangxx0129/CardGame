@@ -17,9 +17,10 @@ public:
     QString GameName();
 
 
-    void DealAction();
+    void DealAction(Card *c);
     void OnTableauClick(Card *c);
     void OnDealClick(Card *c);
     void OnWasteClick(Card *c);
+    void OnDealEmptyClick(Card *);
 };
 #endif // KLONDIKE_H

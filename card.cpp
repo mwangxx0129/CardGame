@@ -35,6 +35,7 @@ int Card::StackSize()
     return size;
 }
 
+// reverse card and adjust Image
 void Card::Faceup(bool f)
 {
     faceup = f;
@@ -48,12 +49,12 @@ void Card::mousePressEvent(QMouseEvent *ev){
         mouseDownOffset=pos()-ev->globalPos();
         okToDrag=faceup && pile->CanBeDragged(this);
         break;
-     case Qt::RightButton:
+    case Qt::RightButton:
         popUpPos=pos();
         popUpCard=this;
         move(pos()+QPoint(0,-20));
         break;
-     default: ;
+    default: ;
     }
 }
 
@@ -93,8 +94,13 @@ void Card::mouseReleaseEvent(QMouseEvent *ev){
 void Card::mouseDoubleClickEvent(QMouseEvent *ev)
 {
     if(pile) pile->mouseDoubleClickEvent(this);
-    //    if(!over) // try to play off card
-    //        Playoff();
+    if(!over) // try to play off card
+        Playoff();
+}
+
+void Card::Playoff()
+{
+    pile->onClickEvent(this);
 }
 
 void Card::Move(Pile *to, bool expose)
@@ -118,7 +124,17 @@ Card *Card::AdjustPositions(QPoint newPos, QPoint delta)
     return top;
 }
 
+// pile is in WASTE, align with current pile
 void Card::AlignWithPile()
+{
+
+    if(pile){
+        QPoint cardPos = pile->pos();
+        move(cardPos);
+    }
+}
+
+void Card::Animate(QPoint newPos)
 {
 
 }

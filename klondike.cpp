@@ -60,23 +60,42 @@ QString Klondike::GameName(){
 }
 
 //----------------------------------------------------------------------|
-void Klondike::DealAction(){}
+void Klondike::DealAction(Card * c){
+    // deal card to Waste
+    for(int i = 0; i<3 ; i++)
+    {
+        waste->AcceptCards(deal->Top(), true, false);
+        if(i==0) c->AlignWithPile();
+    }
+}
 //----------------------------------------------------------------------|
 void Klondike::OnTableauClick(Card *c){
     if(c) PlayOff(c);
 }
 //----------------------------------------------------------------------|
 void Klondike::OnDealClick(Card *c){
-    for(int i = 2; waste&&waste->Top() && i>=0; --i){
-        deal->InsertBottom(waste->Top(), false, false);
-    }
+    DealAction(c);
+//    for(int i = 2; waste&&waste->Top() && i>=0; --i){
+//        deal->InsertBottom(waste->Top(), false, false);
+//    }
 
-    int i = diffculty;
-    for(; deal && deal->Top() && i>=0; --i){
-        waste->AcceptCards(deal->Top(),true, true);
-    }
+//    int i = diffculty;
+//    for(; deal && deal->Top() && i>=0; --i){
+//        waste->AcceptCards(deal->Top(),true, false);
+//    }
 }
 //----------------------------------------------------------------------|
 void Klondike::OnWasteClick(Card *c){
     if(c) PlayOff(c);
+}
+
+void Klondike::OnDealEmptyClick(Card *)
+{
+    // push back to Stock
+    if(deal->Empty()){
+        while(!waste->Empty()){
+            deal->AcceptCards(waste->Top());
+            deal->Top()->Faceup(false);
+        }
+    }
 }

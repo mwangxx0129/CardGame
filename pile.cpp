@@ -51,6 +51,7 @@ Pile::~Pile()
     // TODO DragRule and DropRule
 }
 
+// Accept Cards
 void Pile::AcceptCards(Card *c, bool expose, bool record)
 {
     QPoint cardPosition;
@@ -73,14 +74,16 @@ void Pile::AcceptCards(Card *c, bool expose, bool record)
     if(Type() == FOUNDATION && top->Pip() == KING) game->CheckWin();
 }
 
+// Called by original pile
+// Cut off the link between original pile and card
 void Pile::ReleaseCards(Card *c, bool expose)
 {
     if(c && c->pile && c->under){
         top = c->under;
         top->over = NULL;
         c->under = NULL;
-        top->Faceup(expose);
-
+        if(this->Type() != STOCK)
+            top->Faceup(expose);
     }else{
         top = NULL;
         bottom = NULL;
@@ -88,6 +91,7 @@ void Pile::ReleaseCards(Card *c, bool expose)
 
 }
 
+// Insert current card into the bottom of STOCK
 void Pile::InsertBottom(Card *c, bool expose, bool record)
 {
     c->Faceup(expose);
@@ -104,6 +108,7 @@ void Pile::InsertBottom(Card *c, bool expose, bool record)
     }
     c->pile = this;
     c->move(this->pos());
+
     // raise who over bottom
     Card *tmp = bottom;
     while(tmp && tmp->over){
@@ -133,6 +138,7 @@ bool Pile::CanBeDropped(Card *c)
     return ok;
 }
 
+// find the closest pile,which will accept Card
 void Pile::FindClosestDrop(Card *c)
 {
     const int NUM = 3;
@@ -189,9 +195,15 @@ void Pile::AddDragRules(int n ...)
     va_end(lp);
 }
 
-//void mouseReleaseEvent(QMouseEvent *){
+void Pile::mouseReleaseEvent(QMouseEvent *)
+{
+    //game->OnDealEmptyClick(NULL);
+}
 
-//}
+void Pile::mousePressEvent(QMouseEvent *)
+{
+    game->OnDealEmptyClick(NULL);
+}
 
 //Methods for inheriting classes----------------------------------------
 PileTableau::PileTableau(int x, int y, int dx, int dy, QWidget *parent):

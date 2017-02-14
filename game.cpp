@@ -16,7 +16,7 @@ Game::~Game()
 }
 
 //------------------------------------------------|
-void Game::Clear() //
+void Game::Clear()
 {
     while(!piles.empty()){
         Pile *p = piles.takeLast();
@@ -74,12 +74,13 @@ void Game::CheckWin(){
 
     int  i = piles.count();
     bool allEmpty = true;
-    while(allEmpty && i>= 0 && FOUNDATION != piles[--i]->Type())
+    while(allEmpty && i>= 0 &&
+          FOUNDATION != piles[--i]->Type())
         allEmpty = piles[i]->Empty();
     if(allEmpty)
     {
         WinBox->show();
-        //            CardMove::Clear(); // TODO... undo
+        CardMove::Clear();
     }
 }
 

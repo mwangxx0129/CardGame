@@ -29,11 +29,11 @@ void FreeCell::ReDeal(hardtype h)
         freecell[i] = new PileFreeCell(20+82*i, 10, 0, 0, parent);
     freecell[0]->AddDropRules(2, new RuleMoveOneAtATime(),
                               new RuleStackOneAtATime());
-    foundation[0]->AddDragRules(0);
+    freecell[0]->AddDragRules(0);
 
     for (int i = 0; i < 8; i++)
         tableau[i] = new PileTableau(61+82*i, 120, 0, 18, parent);
-    tableau[0]->AddDropRules(3, new RuleStackAlternateColor,
+    tableau[0]->AddDropRules(2, new RuleStackAlternateColor,
                              new RuleStackMinusOne());
     tableau[0]->AddDragRules(2, new RuleMoveAltColor(),
                              new RuleMoveSeqDecreasing());

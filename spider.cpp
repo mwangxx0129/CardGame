@@ -9,6 +9,11 @@ Spider::Spider(QWidget *par):
 void Spider::ReDeal(hardtype h)
 {
     Clear();
+    // diffculty
+//    if(REPEAT != h) diffculty = h;
+//    int mnval = 52 -(SUIT_SIZE << (diffculty-1));
+//    int val
+
 
     // create and shuffle
     Card* Deck[104];
@@ -70,14 +75,17 @@ void Spider::OnDealClick(Card *c)
     }
 }
 
+void Spider::OnTableauClick(Card *c)
+{
+    if(c) PlayOff(c);
+}
+
 void Spider::OnFieldDoubleClick(Card *c)
 {
     Pile *p = c->Pilep();
-
     // find empty foundation
     int i = 0;
     while(i<8 &&foundation[i] && foundation[i]->Top()) i++;
-
 
     // check CanBeDropped
     if(!foundation[i]->CanBeDropped(p->Top()))

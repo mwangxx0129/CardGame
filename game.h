@@ -23,7 +23,7 @@ public:
     virtual void OnFieldDoubleClick(Card *){}
     virtual void OnTableauClick(Card *){}
     virtual void OnDealClick(Card *){}
-    virtual void OnDealtClick(Card *){}
+    virtual void OnDealEmptyClick(Card *){}
     virtual void OnFreeCellClick(Card *){}
     virtual void CheckWin(); // check all pile and foundation
     virtual QString GameName()=0;

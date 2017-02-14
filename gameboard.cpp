@@ -1,3 +1,4 @@
+#include <QTime>
 #include "card.h"
 #include "klondike.h"
 #include "freecell.h"
@@ -30,45 +31,40 @@ GameBoard::~GameBoard()
 
 void GameBoard::on_actionKlondike_triggered()
 {
-    on_actionGame_triggered("Klondike");
+    if(game) game->Clear();
+    // seed based on current time
+    qsrand(QTime::currentTime().msec());
+    game = new Klondike(ui->centralWidget);
+    setWindowTitle(game->GameName());
+    game->ReDeal(MEDIUM);
 }
 
 void GameBoard::on_actionFreeCell_triggered()
 {
-    on_actionGame_triggered("FreeCell");
+    if(game) game->Clear();
+    // seed based on current time
+    qsrand(QTime::currentTime().msec());
+    game = new FreeCell(ui->centralWidget);
+    setWindowTitle(game->GameName());
+    game->ReDeal(MEDIUM);
 }
 
 void GameBoard::on_actionSpider_triggered()
 {
-    on_actionGame_triggered("Spider");
-}
-
-void GameBoard::on_actionGame_triggered(QString name)
-{
-    //qsrand(t.elapsed());
-    setWindowTitle(name);
-    //setSizePolicy(QSizePolicy());
     if(game) game->Clear();
-    switch (name.at(0).toLatin1()) {
-    case 'K':
-        game = new Klondike(ui->centralWidget);
-        break;
-    case 'F':
-        game = new FreeCell(ui->centralWidget);
-        break;
-    case 'S':
-        game = new Spider(ui->centralWidget);
-        break;
-    default:
-        break;
-    }
-    ui->menuGame->setTitle(game->GameName());
+    // seed based on current time
+    qsrand(QTime::currentTime().msec());
+    game = new Spider(ui->centralWidget);
+    setWindowTitle(game->GameName());
     game->ReDeal(MEDIUM);
 }
 
 void GameBoard::on_actionRedeal_triggered()
 {
-    on_actionGame_triggered(NULL != game ? game->GameName():"Klondike");
+    if(game) {
+        game->Clear();
+        game->ReDeal(MEDIUM);
+    }
 }
 
 void GameBoard::on_actionHelp_triggered()
