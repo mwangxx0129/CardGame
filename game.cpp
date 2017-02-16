@@ -34,13 +34,11 @@ bool Game::PlayOff(Card *c){
     if(c->Pilep() &&c->Pilep()->CanBeDragged(c))
     {
         int i = 0;
-//        while(i < piles.count()&& piles[i]&&
-//              !(piles[i]->Type() == FOUNDATION &&
-//                piles[i]->CanBeDropped(c)))
-//            i++;
-        while(i < piles.count()&& piles[i] &&
-                !piles[i]->CanBeDropped(c))
+        while(i < piles.count()&& piles[i]&&
+              !(piles[i]->Type() == FOUNDATION &&
+                piles[i]->CanBeDropped(c)))
             i++;
+
         if(i < piles.count())
         {
             piles[i]->AcceptCards(c);

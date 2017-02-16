@@ -55,6 +55,7 @@ Pile::~Pile()
 void Pile::AcceptCards(Card *c, bool expose, bool record)
 {
     QPoint cardPosition;
+    if(c == NULL) return;
     if (record) new CardMove(c, c->pile, this);
     if (c->pile) // is the card in a pile now?
         c->pile->ReleaseCards(c, expose);
@@ -89,33 +90,6 @@ void Pile::ReleaseCards(Card *c, bool expose)
         bottom = NULL;
     }
 
-}
-
-// Insert current card into the bottom of STOCK
-void Pile::InsertBottom(Card *c, bool expose, bool record)
-{
-    c->Faceup(expose);
-    if (c->pile) // is the card in a pile now?
-        c->pile->ReleaseCards(c, expose);
-    if(bottom){
-        bottom->under = c;
-        c->over = bottom;
-        bottom = c;
-    }else{
-
-        bottom = c;
-        top = c;
-    }
-    c->pile = this;
-    c->move(this->pos());
-
-    // raise who over bottom
-    Card *tmp = bottom;
-    while(tmp && tmp->over){
-        tmp->over->raise();
-        tmp->over->show();
-        tmp = tmp->over;
-    }
 }
 
 bool Pile::CanBeDragged(Card *c)

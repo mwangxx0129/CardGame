@@ -86,7 +86,8 @@ void GameBoard::on_actionExit_triggered()
 
 void GameBoard::on_actionPlay_off_triggered()
 {
-    game->PlayOffAll();
+    if(game)
+        game->PlayOffAll();
 }
 
 void GameBoard::on_actionUndo_triggered()

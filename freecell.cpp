@@ -27,8 +27,10 @@ void FreeCell::ReDeal(hardtype h)
 
     for (int i = 0; i < 4; i++)
         freecell[i] = new PileFreeCell(20+82*i, 10, 0, 0, parent);
-    freecell[0]->AddDropRules(2, new RuleMoveOneAtATime(),
-                              new RuleStackOneAtATime());
+    freecell[0]->AddDropRules(4, new RuleMoveOneAtATime(),
+                              new RuleStackOneAtATime(),
+                              new RuleStackPlusOne(),
+                              new RuleStackMinusOne());
     freecell[0]->AddDragRules(0);
 
     for (int i = 0; i < 8; i++)

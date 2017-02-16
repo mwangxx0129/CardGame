@@ -62,7 +62,7 @@ QString Klondike::GameName(){
 //----------------------------------------------------------------------|
 void Klondike::DealAction(Card * c){
     // deal card to Waste
-    for(int i = 0; i<3 ; i++)
+    for(int i = 0; i<3 && deal; i++)
     {
         waste->AcceptCards(deal->Top(), true, false);
         if(i==0) c->AlignWithPile();
@@ -75,14 +75,6 @@ void Klondike::OnTableauClick(Card *c){
 //----------------------------------------------------------------------|
 void Klondike::OnDealClick(Card *c){
     DealAction(c);
-//    for(int i = 2; waste&&waste->Top() && i>=0; --i){
-//        deal->InsertBottom(waste->Top(), false, false);
-//    }
-
-//    int i = diffculty;
-//    for(; deal && deal->Top() && i>=0; --i){
-//        waste->AcceptCards(deal->Top(),true, false);
-//    }
 }
 //----------------------------------------------------------------------|
 void Klondike::OnWasteClick(Card *c){

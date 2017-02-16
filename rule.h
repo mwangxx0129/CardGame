@@ -52,9 +52,6 @@ class RuleStackOneAtATime:public Rule{
 class RuleStack13:public Rule{
     bool Enforce(Pile *p, Card *c);
 };
-//class RuleStackFull:public Rule{
-//    bool Enfore(Pile *p, Card *c);
-//};
 
 class RuleStackLengthLimited:public Rule{
     bool Enforce(Pile *p, Card *c);
